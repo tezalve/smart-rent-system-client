@@ -29,6 +29,11 @@ const Navbar = () => {
                                 Home
                             </NavLink>
                         </li>
+                        <li className="nav-item active p-1">
+                            <NavLink id='home' className='text-decoration-none' to={"/properties"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'black' })}>
+                                Properties
+                            </NavLink>
+                        </li>
                         {
                             user ?
                                 <li className="nav-item active p-1">

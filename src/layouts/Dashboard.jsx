@@ -22,7 +22,7 @@ const Dashboard = () => {
                         <div className="min-vh-100">
                             <div className='text-center'>
                                 <NavLink to={'/'}>
-                                    <Image src={AA} width={"30%"}></Image>
+                                    SRS
                                 </NavLink>
                             </div>
                             {/* check admin or not */}
@@ -30,13 +30,8 @@ const Dashboard = () => {
                                 individual.role == "admin" ?
                                     <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center text-center" id="menu">
                                         <li className="nav-item py-4">
-                                            <NavLink to={'/dashboard/mclasses'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
-                                                Manage Classes
-                                            </NavLink>
-                                        </li>
-                                        <li className="nav-item py-4">
-                                            <NavLink to={'/dashboard/musers'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
-                                                Manage Users
+                                            <NavLink to={'/dashboard/addproperty'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
+                                                Add Property
                                             </NavLink>
                                         </li>
                                     </ul>
