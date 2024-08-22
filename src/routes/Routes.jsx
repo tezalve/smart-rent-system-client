@@ -7,6 +7,7 @@ import Dashboard from "../layouts/Dashboard";
 import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 import PrivateRoute from "./PrivateRoutes";
 import Properties from "../pages/properties/properties";
+import MyProperties from "../pages/Dashboard/MyProperties/MyProperties";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/addproperty",
                 element: <AddProperty></AddProperty>
+            },
+            {
+                path: "/dashboard/myproperties",
+                element: <MyProperties></MyProperties>
             }
         ]
     }

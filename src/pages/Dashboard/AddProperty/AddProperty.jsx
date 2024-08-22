@@ -16,8 +16,9 @@ const AddProperty = () => {
         const rent = form.rent.value;
         const size = form.size.value;
         const availability = 1;
+        const email = user.email;
         const status = "pending";
-        const newProperty = { image, building_name, flat_name, location, rent, size, availability, status }
+        const newProperty = { image, building_name, flat_name, location, rent, size, availability, email, status }
         fetch("http://localhost:5000/addproperty", {
             method: "POST",
             headers: {
