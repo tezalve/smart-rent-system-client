@@ -7,24 +7,12 @@ import useInProperties from '../../../hooks/useInProperties';
 
 const MyProperties = () => {
 
-    const { user } = useContext(AuthContext);
-    const [data] = useInProperties(user.email);
-
-    return (
+    return(
         <div>
-            <h1 className='text-center'>My Properties</h1>
-            <Slide>
-                <CardGroup>
-                    {
-                        data?.map(property => <MyProperty
-                            key={property._id}
-                            property={property}
-                        ></MyProperty>)
-                    }
-                </CardGroup>
-            </Slide>
+            
         </div>
-    );
+    )
+
 };
 
 export default MyProperties;

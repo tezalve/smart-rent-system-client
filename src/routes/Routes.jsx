@@ -11,6 +11,7 @@ import MyProperties from "../pages/Dashboard/MyProperties/MyProperties";
 import LandlordRoutes from "./LandlordRoutes";
 import Musers from "../pages/Dashboard/Musers/Musers";
 import AdminRoutes from "./AdminRoutes";
+import Mproperties from "../pages/Dashboard/Mproperties/Mproperties";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/musers",
                 element: <AdminRoutes><Musers></Musers></AdminRoutes>
+            },
+            {
+                path: "/dashboard/mproperties",
+                element: <AdminRoutes><Mproperties></Mproperties></AdminRoutes>
             }
         ]
     }
