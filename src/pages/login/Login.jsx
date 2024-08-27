@@ -51,7 +51,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const loggedUser = result.user;
-                // saveNewUser(loggedUser);
+                saveNewUser(loggedUser, 'google');
                 toast.success(`Welcome ${loggedUser.displayName}`)
                 navigate(from);
             })
@@ -60,24 +60,25 @@ const Login = () => {
             })
     }
 
-    // const saveNewUser = (user) =>{
-    //     const displayName = user.displayName;
-    //     const email = user.email;
-    //     const photoURL = user.photoURL;
-    //     const role = "student";
-    //     const newUser = {displayName, email, photoURL, role};
-    //     fetch("https://aperture-academy-server.vercel.app/adduser", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(newUser),
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
+    const saveNewUser = (user, signInM) =>{
+        const displayName = user.displayName;
+        const email = user.email;
+        const photoURL = user.photoURL;
+        const role = "tenant";
+        const signInMethod = signInM;
+        const newUser = {displayName, email, photoURL, role, signInMethod};
+        fetch("http://localhost:5000/adduser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+        })
+        .then(res => res.json())
+        .then(data => {
             
-    //     })
-    // }
+        })
+    }
 
     const { loading } = useContext(AuthContext);
     if (loading) {

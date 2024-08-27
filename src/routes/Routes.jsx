@@ -8,6 +8,9 @@ import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 import PrivateRoute from "./PrivateRoutes";
 import Properties from "../pages/properties/properties";
 import MyProperties from "../pages/Dashboard/MyProperties/MyProperties";
+import LandlordRoutes from "./LandlordRoutes";
+import Musers from "../pages/Dashboard/Musers/Musers";
+import AdminRoutes from "./AdminRoutes";
 
 const router = createBrowserRouter([
     {
@@ -38,11 +41,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/addproperty",
-                element: <AddProperty></AddProperty>
+                element: <LandlordRoutes><AddProperty></AddProperty></LandlordRoutes>
             },
             {
                 path: "/dashboard/myproperties",
-                element: <MyProperties></MyProperties>
+                element: <LandlordRoutes><MyProperties></MyProperties></LandlordRoutes>
+            },
+            {
+                path: "/dashboard/musers",
+                element: <AdminRoutes><Musers></Musers></AdminRoutes>
             }
         ]
     }
