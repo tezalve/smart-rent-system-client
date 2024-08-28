@@ -1,9 +1,10 @@
 import React from 'react';
+import Opener from './Opener/Opener';
 
 const Home = () => {
     return (
         <div>
-            <h2>Home</h2>
+            <Opener></Opener>
         </div>
     );
 };

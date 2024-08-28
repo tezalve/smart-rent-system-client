@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
-import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import NotFound from "../pages/NotFound/NotFound";
 import Dashboard from "../layouts/Dashboard";
@@ -13,6 +12,7 @@ import Musers from "../pages/Dashboard/Musers/Musers";
 import AdminRoutes from "./AdminRoutes";
 import Mproperties from "../pages/Dashboard/Mproperties/Mproperties";
 import UpdateProperty from "../pages/Dashboard/MyProperties/UpdateProperty";
+import Home from "../pages/home/Home/Home";
 
 const router = createBrowserRouter([
     {

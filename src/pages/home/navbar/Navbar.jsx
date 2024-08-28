@@ -22,7 +22,7 @@ const Navbar = () => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" area-controls="navbarNavDropdown" area-expanded="false" area-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <div className="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                     <ul className="navbar-nav align-items-center d-flex justify-content-between">
                         <li className="nav-item active p-1">
                             <NavLink id='home' className='text-decoration-none' to={"/"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'black' })}>
@@ -45,26 +45,26 @@ const Navbar = () => {
                                 </li>
                                 : ""
                         }
-                        <li className="nav-item p-1">
-                            {
-                                user ?
-                                    <>
-                                        <span className='p-1'>
-                                            <Image title={user.displayName} className='' style={{ width: "40px", height: "40px" }} src={user.photoURL} roundedCircle></Image>
-                                        </span>
-                                        <Button className='btn-danger' onClick={handleLogOut}>
-                                            Signout
-                                        </Button>
-                                    </>
-                                    :
-                                    <>
-                                        <NavLink id='login' className='text-decoration-none' to={"/login"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'black' })}>
-                                            Login
-                                        </NavLink>
-                                    </>
-                            }
-                        </li>
                     </ul>
+                </div>
+                <div>
+                        {
+                            user ?
+                                <>
+                                    <span className='p-1'>
+                                        <Image title={user.displayName} className='' style={{ width: "40px", height: "40px" }} src={user.photoURL} roundedCircle></Image>
+                                    </span>
+                                    <Button className='btn' onClick={handleLogOut} style={{ backgroundColor: "FireBrick", border: "0"}}>
+                                        Signout
+                                    </Button>
+                                </>
+                                :
+                                <>
+                                    <NavLink id='login' className='text-decoration-none' to={"/login"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'black' })}>
+                                        Login
+                                    </NavLink>
+                                </>
+                        }
                 </div>
             </nav>
         </div>
