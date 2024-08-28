@@ -1,5 +1,4 @@
-import { faHammer, faPeopleRoof, faPersonCane, faTents } from '@fortawesome/free-solid-svg-icons';
-import { faLandmark } from '@fortawesome/free-solid-svg-icons/faLandmark';
+import { faHammer, faPeopleRoof, faPersonCane } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import useUsers from '../../../hooks/useUsers';
 import { Link } from 'react-router-dom';

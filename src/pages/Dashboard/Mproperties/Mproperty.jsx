@@ -36,26 +36,29 @@ const Mproperty = ({ property }) => {
     }
 
     return (
-        <div className='col-12 p-2 '>
-            <div className="card align-items-center text-white" style={{ backgroundImage: `url(${property.image})`, backgroundRepeat:"no-repeat", backgroundSize:"contain", backgroundPosition: "center" }}>
+        <div className='col-3 p-2 '>
+            <div className="card align-items-center">
                 <div className="card-body text-center">
-                    <p className="card-title">Class: {property.building_name}</p>
+                    <img src={property.image} width={"100%"} alt="" />
+                </div>
+                <div className="card-body text-center">
+                    <p className="card-title">Flat: {property.building_name + " " + property.flat_name}</p>
                 </div>
 
                 <div className="card-body text-center">
-                    <p className="card-title">Instructor name: {property.flat_name}</p>
-                </div>
-
-                <div className="card-body text-center">
-                    <p className="card-title">Available Seats: {property.availability}</p>
+                    <p className="card-title">Availability: {property.availability}</p>
                 </div>
 
                 <div className="card-body text-center border-right border-dark">
-                    <p className="card-title">Price: ${property.rent}</p>
+                    <p className="card-title">Rent: ${property.rent}</p>
                 </div>
 
                 <div className="card-body text-center border-right border-dark">
                     <p className="card-title">Status: {property.status}</p>
+                </div>
+
+                <div className="card-body text-center border-right border-dark">
+                    <p className="card-title">Added By: {property.email}</p>
                 </div>
 
                 <div className="card-body text-center border-right border-dark">

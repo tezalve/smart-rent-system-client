@@ -12,6 +12,7 @@ import LandlordRoutes from "./LandlordRoutes";
 import Musers from "../pages/Dashboard/Musers/Musers";
 import AdminRoutes from "./AdminRoutes";
 import Mproperties from "../pages/Dashboard/Mproperties/Mproperties";
+import UpdateProperty from "../pages/Dashboard/MyProperties/UpdateProperty";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
                 element: <LandlordRoutes><MyProperties></MyProperties></LandlordRoutes>
             },
             {
+                path: "/dashboard/updateproperty/:id",
+                element: <LandlordRoutes><UpdateProperty></UpdateProperty></LandlordRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
+            },
+            {
                 path: "/dashboard/musers",
                 element: <AdminRoutes><Musers></Musers></AdminRoutes>
             },
@@ -56,6 +62,7 @@ const router = createBrowserRouter([
                 path: "/dashboard/mproperties",
                 element: <AdminRoutes><Mproperties></Mproperties></AdminRoutes>
             }
+
         ]
     }
 ])

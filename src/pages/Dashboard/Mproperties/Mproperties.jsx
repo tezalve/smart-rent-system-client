@@ -10,7 +10,7 @@ const Mproperties = () => {
     const [data] = useAllProperties();
     return (
         <div>
-            <h1 className='text-center'>My Properties</h1>
+            <h1 className='text-center'>Manage Properties</h1>
             <Slide>
                 <CardGroup>
                     {
