@@ -5,7 +5,7 @@ import { Slide } from 'react-awesome-reveal';
 import useApprovedProperties from '../../hooks/useApprovedProperties';
 
 const Properties = () => {
-    const [properties] = useApprovedProperties();
+    const [data] = useApprovedProperties();
 
     return (
         <div className='mt-5 p-5'>
@@ -13,7 +13,7 @@ const Properties = () => {
             <Slide>
                 <CardGroup>
                     {
-                        properties?.map(property => <PropertyCard
+                        data?.map(property => <PropertyCard
                             key={property._id}
                             property={property}
                         ></PropertyCard>)

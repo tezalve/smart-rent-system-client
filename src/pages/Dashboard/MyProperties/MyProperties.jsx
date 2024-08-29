@@ -25,7 +25,6 @@ const MyProperties = () => {
             </Slide>
         </div>
     )
-
 };
 
 export default MyProperties;

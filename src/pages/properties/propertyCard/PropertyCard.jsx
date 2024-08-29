@@ -1,16 +1,76 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../providers/AuthProviders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import './PropertyCard.css'
+import useIndividual from '../../../hooks/useIndividual';
+import useApprovedProperties from '../../../hooks/useApprovedProperties';
+import { Spinner } from 'react-bootstrap';
+import useBookedProperties from '../../../hooks/useBookedProperties';
+import { useNavigate } from 'react-router-dom';
 
 const PropertyCard = ({ property }) => {
 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
+    const [individual, setIndividual] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/individual/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setIndividual(data))
+    },[])
+    if(individual.length < 1){
+        navigate('/');
+    }
+
+    const [bookedproperties, setBookedproperties] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/bookedproperties/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setBookedproperties(data))
+    },[])
+
+    var alreadybooked = false;
     const handleSelect = () => {
-        toast.success(`Successfully booked ${property.size + " " + property.building_name + " " + property.flat_name}`)
+        if (individual?.role === 'tenant') {
+            bookedproperties?.map(entry => {
+                if(entry.property_id === property._id){
+                    alreadybooked = true;
+                }
+            })
+            if (!alreadybooked){
+                const user_email = user.email;
+                const property_id = property._id;
+                const image = property.image;
+                const prprty = property.building_name + " " + property.flat_name;
+                const landlord_email = property.email;
+                const payment_done = false;
+                const deleted = false;
+                const bookedproperty = { user_email, property_id, image, prprty, landlord_email, payment_done, deleted};
+                fetch("http://localhost:5000/bookproperty", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(bookedproperty),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                toast.success(`Successfully booked ${property.size + " " + property.building_name + " " + property.flat_name}`)
+                navigate('/dashboard/bookedproperties');
+            } else {
+                toast.warn("Already booked");
+            }
+        }else if (!user) {
+            toast.warn("Please Log in");
+        } else {
+            toast.warn("Only tenants can book");
+        }
     }
 
     return (

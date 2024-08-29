@@ -13,6 +13,8 @@ import AdminRoutes from "./AdminRoutes";
 import Mproperties from "../pages/Dashboard/Mproperties/Mproperties";
 import UpdateProperty from "../pages/Dashboard/MyProperties/UpdateProperty";
 import Home from "../pages/home/Home/Home";
+import TenantRoutes from "./TenantRoutes";
+import BookedProperties from "../pages/Dashboard/BookedProperties/BookedProperties";
 
 const router = createBrowserRouter([
     {
@@ -61,7 +63,12 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/mproperties",
                 element: <AdminRoutes><Mproperties></Mproperties></AdminRoutes>
+            },
+            {
+                path: "/dashboard/bookedproperties",
+                element: <TenantRoutes><BookedProperties></BookedProperties></TenantRoutes>
             }
+            
 
         ]
     }
