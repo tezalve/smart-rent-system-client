@@ -22,7 +22,7 @@ const Mproperty = ({ property }) => {
             })
         refetch();
         refetch();
-        toast.success(`Successfully changed status of class: "${property.status}"`);
+        toast.success(`Successfully changed status of "${property.building + " " + property.flat_name}" to: "${property.status}"`);
     }
 
     const handleApprove = () => {

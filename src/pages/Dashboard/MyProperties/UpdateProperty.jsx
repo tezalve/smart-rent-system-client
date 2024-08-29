@@ -14,32 +14,38 @@ const UpdateProperty = () => {
     const [, refetch] = useInProperties();
 
     const handleUpdateProperty = event => {
-        event.preventDefault();
-        const _id = prprty._id;
-        const form = event.target;
-        const image = form.image.value;
-        const building_name = form.building_name.value;
-        const flat_name = form.flat_name.value;
-        const location = form.location.value;
-        const rent = form.rent.value;
-        const size = form.size.value;
-        const availability = 1;
-        const email = user.email;
-        const status = "pending";
-        const updateProperty = { _id, image, building_name, flat_name, location, rent, size, availability, email, status }
-        fetch("http://localhost:5000/updateproperty", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateProperty),
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
+        if (prprty.status != "pending"){
+            event.preventDefault();
+            toast.warn(`${prprty.building_name + " " + prprty.flat_name} is not pending!`);
+        }
+        else{
+            event.preventDefault();
+            const _id = prprty._id;
+            const form = event.target;
+            const image = form.image.value;
+            const building_name = form.building_name.value;
+            const flat_name = form.flat_name.value;
+            const location = form.location.value;
+            const rent = form.rent.value;
+            const size = form.size.value;
+            const availability = 1;
+            const email = user.email;
+            const status = "pending";
+            const updateProperty = { _id, image, building_name, flat_name, location, rent, size, availability, email, status }
+            fetch("http://localhost:5000/updateproperty", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updateProperty),
             })
-        toast.success(`Successfully Updated ${building_name + " " + flat_name}`);
-        navigate('/dashboard/myproperties');
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+            toast.success(`Successfully Updated ${building_name + " " + flat_name}`);
+            navigate('/dashboard/myproperties');
+        }
     }
 
     return (
