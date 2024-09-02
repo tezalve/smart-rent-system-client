@@ -3,6 +3,7 @@ import { Image } from 'react-bootstrap';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AuthContext } from '../providers/AuthProviders';
+import { Helmet } from 'react-helmet';
 
 const Dashboard = () => {
 
@@ -80,6 +81,51 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="col-10 py-3">
+                        {
+                            individual.role == "admin" ?
+                                <div>
+                                    <h1 className='text-center' style={{color: 'firebrick'}}>Admin Dashboard</h1>
+                                    <hr
+                                        style={{
+                                            color: 'black',
+                                            backgroundColor: 'white',
+                                            height: 5
+                                        }}
+                                    />
+                                </div>
+                                :
+                                ""
+                        }
+                        {
+                            individual.role == "landlord" ?
+                            <div>
+                                <h1 className='text-center' style={{color: 'firebrick'}}>Landlord Dashboard</h1>
+                                <hr
+                                    style={{
+                                        color: 'black',
+                                        backgroundColor: 'white',
+                                        height: 5
+                                    }}
+                                />
+                            </div>
+                            :
+                            ""
+                        }
+                        {
+                            individual.role == "tenant" ?
+                            <div>
+                                <h1 className='text-center' style={{color: 'firebrick'}}>Tenant Dashboard</h1>
+                                <hr
+                                    style={{
+                                        color: 'black',
+                                        backgroundColor: 'white',
+                                        height: 5
+                                    }}
+                                />
+                            </div>
+                            :
+                            ""
+                        }
                         <Outlet></Outlet>
                     </div>
                 </div>

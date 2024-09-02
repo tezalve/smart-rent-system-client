@@ -34,14 +34,18 @@ const PropertyCard = ({ property }) => {
     },[])
 
     var alreadybooked = false;
+    var full = false;
+    bookedproperties?.map(entry => {
+        if(entry.property_id === property._id){
+            alreadybooked = true;
+        }
+        if(property.availability <= 0){
+            full = true;
+        }
+    })
     const handleSelect = () => {
         if (individual?.role === 'tenant') {
-            bookedproperties?.map(entry => {
-                if(entry.property_id === property._id){
-                    alreadybooked = true;
-                }
-            })
-            if (!alreadybooked){
+            if (!alreadybooked && !full){
                 const user_email = user.email;
                 const property_id = property._id;
                 const image = property.image;
@@ -64,7 +68,13 @@ const PropertyCard = ({ property }) => {
                 toast.success(`Successfully booked ${property.size + " " + property.building_name + " " + property.flat_name}`)
                 navigate('/dashboard/bookedproperties');
             } else {
-                toast.warn("Already booked");
+                if(alreadybooked){
+                    toast.warn("Already booked");
+                } else if (full){
+                    toast.warn("Full");
+                } else {
+                    toast.warn("Booking Failed Miserably");
+                }
             }
         }else if (!user) {
             toast.warn("Please Log in");
@@ -75,7 +85,7 @@ const PropertyCard = ({ property }) => {
 
     return (
         <div className='col-md-12 p-5'>
-            <div className={property.availability == 0 ? "card flex-row align-items-center bg-danger" : "card flex-row align-items-center"}>
+            <div className={ full || alreadybooked ? "card flex-row align-items-center bg-warning" : "card flex-row align-items-center"}>
                 <img src={property.image} height={"100px"} className="" alt="..." />
                 <div className="card-body text-center">
                     <h6 className="card-title">Building: {property.building_name}</h6>
@@ -102,7 +112,7 @@ const PropertyCard = ({ property }) => {
                 </div>
                 <div className="vr"></div>
                 <div className="card-body text-center">
-                    <a className={ property.availability == 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
+                    <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
                 </div>
             </div>
         </div>

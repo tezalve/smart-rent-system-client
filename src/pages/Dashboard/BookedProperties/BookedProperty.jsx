@@ -28,6 +28,56 @@ const BookedProperty = ({ property }) => {
 
         }
     }
+
+    bKash.init({
+        //options -
+        //1) 'checkout' : Performs a single checkout.
+        paymentMode: 'checkout',
+
+        //paymentRequest format : { amount: _AMOUNT, intent: _INTENT };
+        //intent : sale - immediate trx
+        //intent : authorization - needs an additional 'Capture' call for trx
+        //max two decimal points allowed in amount value.
+        //paymentRequest will be ignored for paymentMode 'addWalletOnly'. Just keep it as blank object (paymentRequest:{})
+        paymentRequest: { amount: '100.50', intent: 'sale' },
+
+        createRequest: function (request) {
+
+
+            //CALL YOUR BACKEND'S CREATE METHOD HERE
+            //IF THE CALL IS SUCCESSFUL, SEND THE CREATE RESPONSE DATA IN bKash.create().onSuccess() METHOD
+                bKash.create().onSuccess(createResponseData);
+            //ELSE, CALL bKash.create().onError() METHOD. bKash will run it's clean up code from there
+                bKash.create().onError();
+
+        },
+        executeRequestOnAuthorization: function () {
+
+
+            //CALL YOUR BACKEND'S EXECUTE METHOD HERE
+            //IF THE CALL IS SUCCESSFUL, DISPLAY YOUR SUCCESS PAGE
+                window.location.href = "your_success_page.html";
+            //ELSE, CALL bKash.execute().onError() METHOD. bKash will run it's clean up code from there
+                bKash.execute().onError();
+
+        },
+        onClose : function () {
+            //define what happens if the user closes the pop up window
+
+            //your code goes here
+        }
+    });
+
+
+    //OPTIONAL function
+    //AFTER CALLING bKash.init, you can call bKash.reconfigure method according to your needs
+
+    //    bKash.reconfigure({
+    //      paymentMode: 'newPaymentMode',
+    //        paymentRequest: 'newPaymentRequest'
+    //    });
+
+    // NOTE : VIEW PAGE SOURCE TO SEE REAL LIFE IMPLEMENTATION
     
 
     return (
@@ -45,6 +95,7 @@ const BookedProperty = ({ property }) => {
                 <div className="card-body text-center border-right border-dark">
                     <Link to={`/dashboard/payment/${property._id}`} className={property.payment_done == false ? "btn" : "btn disabled"} ><FontAwesomeIcon className='fs-2 text-success' icon={faMoneyBill} /></Link>
                 </div>
+                <button id="bKash_button" disabled="disabled">Pay With bKash</button>
             </div>
         </div>
     );
