@@ -32,7 +32,7 @@ const UpdateProperty = () => {
             const email = user.email;
             const status = "pending";
             const updateProperty = { _id, image, building_name, flat_name, location, rent, size, availability, email, status }
-            fetch("http://localhost:5000/updateproperty", {
+            fetch("https://smart-rent-system-server.vercel.app/updateproperty", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

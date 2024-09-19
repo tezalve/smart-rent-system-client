@@ -21,7 +21,7 @@ const TenantRoutes = ({ children }) => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/individual/${user?.email}`)
+        fetch(`https://smart-rent-system-server.vercel.app/individual/${user?.email}`)
             .then(res => res.json())
             .then(data => setIndividual(data))
             .then(setIndLoading(false))

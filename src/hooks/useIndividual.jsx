@@ -4,7 +4,7 @@ const useIndividual = (email) => {
     const { refetch, data } = useQuery({
         queryKey: [],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/individual/${email}`);
+            const response = await fetch(`https://smart-rent-system-server.vercel.app/individual/${email}`);
             return response.json();
         },
     })

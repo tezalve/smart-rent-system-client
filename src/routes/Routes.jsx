@@ -15,6 +15,9 @@ import UpdateProperty from "../pages/Dashboard/MyProperties/UpdateProperty";
 import Home from "../pages/home/Home/Home";
 import TenantRoutes from "./TenantRoutes";
 import BookedProperties from "../pages/Dashboard/BookedProperties/BookedProperties";
+import Registration from "../pages/Registration/Registration";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProviders";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login></Login>
+            },
+            {
+                path: "/registration",
+                element: <Registration></Registration>
             },
             {
                 path: "/properties",
@@ -54,7 +61,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/updateproperty/:id",
                 element: <LandlordRoutes><UpdateProperty></UpdateProperty></LandlordRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
+                loader: ({ params }) => fetch(`https://smart-rent-system-server.vercel.app/property/${params.id}`)
             },
             {
                 path: "/dashboard/musers",

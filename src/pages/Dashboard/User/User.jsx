@@ -3,12 +3,13 @@ import React from 'react';
 import useUsers from '../../../hooks/useUsers';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
 
 const User = ({ user }) => {
 
     const [, refetch] = useUsers();
     const fetchUser = (role) => {
-        fetch(`http://localhost:5000/updateuser/${user.email}`, {
+        fetch(`https://smart-rent-system-server.vercel.app/updateuser/${user.email}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -23,6 +24,17 @@ const User = ({ user }) => {
             refetch();
         toast.success(`Successfully changed role of User: "${user.displayName}"`);
     }
+
+    // async function fetchUser(role) {
+    //     await fetch(`https://smart-rent-system-server.vercel.app/updateuser/${user.email}`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({ role }),
+    //     })
+    // }
+
     const handleLandlord = () => {
         const role = "landlord";
         fetchUser(role);

@@ -9,7 +9,7 @@ const Mproperty = ({ property }) => {
     const [, refetch] = useAllProperties();
 
     const fetchProperty = (status) => {
-        fetch(`http://localhost:5000/updatepropertystatus/${property._id}`, {
+        fetch(`https://smart-rent-system-server.vercel.app/updatepropertystatus/${property._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

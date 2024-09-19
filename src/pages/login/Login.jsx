@@ -3,11 +3,11 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
-import { AuthContext } from '../../Providers/AuthProviders';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
 
-    const pageTitle = 'Aperture Academy | Login'
+    const pageTitle = 'SRS';
 
     const { signIn, signInWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState('');
@@ -67,7 +67,7 @@ const Login = () => {
         const role = "tenant";
         const signInMethod = signInM;
         const newUser = {displayName, email, photoURL, role, signInMethod};
-        fetch("http://localhost:5000/adduser", {
+        fetch("https://smart-rent-system-server.vercel.app/adduser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -99,12 +99,12 @@ const Login = () => {
                 <Form onSubmit={handleLogin} >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name='email' placeholder="Enter email" disabled/>
+                        <Form.Control type="email" name='email' placeholder="Enter email"/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type={pass?'password':'text'} name='password' placeholder="Password" disabled/>
+                        <Form.Control type={pass?'password':'text'} name='password' placeholder="Password"/>
                         <a className='btn text-white border-0' onClick={handleToggle}>{pass? 'Show': 'Hide'}</a>
                     </Form.Group>
                     <Button variant="danger" type="submit">
@@ -112,7 +112,7 @@ const Login = () => {
                     </Button>
                     <p className='text-danger'>{error}</p>
                     <Link className='text-light' to={'/registration'}>
-                        New To Aperture Academy?
+                        New To SRS?
                     </Link>
                     <br />
                     <br />

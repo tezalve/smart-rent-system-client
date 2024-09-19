@@ -13,7 +13,7 @@ const BookedProperty = ({ property }) => {
             const _id = property._id;
             const deleted = true;
             const updateProperty = { _id, deleted }
-            fetch("http://localhost:5000/deletebookedproperty", {
+            fetch("https://smart-rent-system-server.vercel.app/deletebookedproperty", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const BookedProperty = ({ property }) => {
 
     const pay = async () => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/bkash/payment/create', { amount: 50, orderId: 1 }, { withCredentials: true })
+            const { data } = await axios.post('https://smart-rent-system-server.vercel.app/api/bkash/payment/create', { amount: property.rent*2, orderId: 1 }, { withCredentials: true })
             window.location.href = data.bkashURL
         } catch (error) {
             console.log(error.response.data)
@@ -45,6 +45,9 @@ const BookedProperty = ({ property }) => {
                 <img src={property.image} height={"100px"} className="" alt="..." />
                 <div className="card-body text-center">
                     <p className="card-title">Property: {property.prprty}</p>
+                </div>
+                <div className="card-body text-center">
+                    <p className="card-title">Booking Money /Two Month of Rent/: {property.rent*2}</p>
                 </div>
 
                 <div className="card-body text-center border-right border-dark">

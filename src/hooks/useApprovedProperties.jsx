@@ -4,7 +4,7 @@ const useApprovedProperties = () => {
     const { refetch, data } = useQuery({
         queryKey: [],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/approvedproperties/`);
+            const response = await fetch(`https://smart-rent-system-server.vercel.app/approvedproperties/`);
             return response.json();
         },
     })
