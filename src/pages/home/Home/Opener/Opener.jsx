@@ -9,10 +9,10 @@ const Opener = () => {
                 {' " '}
                 <TypeAnimation
                     sequence={[
-                        'Hello and Welcome to',
+                        'Smart Solutions for',
                         500,
-                        'Smart Rent System',
-                        10000
+                        'Renters and Landlords In Dhaka',
+                        1000
                     ]}
                     wrapper="span"
                     cursor={true}

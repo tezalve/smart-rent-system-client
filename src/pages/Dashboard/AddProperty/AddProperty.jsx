@@ -19,7 +19,7 @@ const AddProperty = () => {
         const email = user.email;
         const status = "pending";
         const newProperty = { image, building_name, flat_name, location, rent, size, availability, email, status }
-        fetch("https://smart-rent-system-server.vercel.app/addproperty", {
+        fetch("http://localhost:5000/addproperty", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -72,5 +72,4 @@ const AddProperty = () => {
         </div>
     );
 };
-
 export default AddProperty;

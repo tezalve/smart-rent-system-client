@@ -67,7 +67,7 @@ const Login = () => {
         const role = "tenant";
         const signInMethod = signInM;
         const newUser = {displayName, email, photoURL, role, signInMethod};
-        fetch("https://smart-rent-system-server.vercel.app/adduser", {
+        fetch("http://localhost:5000/adduser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

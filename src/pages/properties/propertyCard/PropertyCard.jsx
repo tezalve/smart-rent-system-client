@@ -18,7 +18,7 @@ const PropertyCard = ({ property }) => {
     const [individual, setIndividual] = useState([]);
 
     useEffect(() => {
-        fetch(`https://smart-rent-system-server.vercel.app/individual/${user?.email}`)
+        fetch(`http://localhost:5000/individual/${user?.email}`)
             .then(res => res.json())
             .then(data => setIndividual(data))
     },[])
@@ -28,7 +28,7 @@ const PropertyCard = ({ property }) => {
 
     const [bookedproperties, setBookedproperties] = useState([]);
     useEffect(() => {
-        fetch(`https://smart-rent-system-server.vercel.app/bookedproperties/${user?.email}`)
+        fetch(`http://localhost:5000/bookedproperties/${user?.email}`)
             .then(res => res.json())
             .then(data => setBookedproperties(data))
     },[])
@@ -55,7 +55,7 @@ const PropertyCard = ({ property }) => {
                 const payment_done = false;
                 const deleted = false;
                 const bookedproperty = { user_email, property_id, image, prprty, landlord_email, rent, payment_done, deleted};
-                fetch("https://smart-rent-system-server.vercel.app/bookproperty", {
+                fetch("http://localhost:5000/bookproperty", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

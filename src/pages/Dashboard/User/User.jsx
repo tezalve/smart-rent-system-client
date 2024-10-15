@@ -9,7 +9,7 @@ const User = ({ user }) => {
 
     const [, refetch] = useUsers();
     const fetchUser = (role) => {
-        fetch(`https://smart-rent-system-server.vercel.app/updateuser/${user.email}`, {
+        fetch(`http://localhost:5000/updateuser/${user.email}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const User = ({ user }) => {
     }
 
     // async function fetchUser(role) {
-    //     await fetch(`https://smart-rent-system-server.vercel.app/updateuser/${user.email}`, {
+    //     await fetch(`http://localhost:5000/updateuser/${user.email}`, {
     //         method: "PATCH",
     //         headers: {
     //             "Content-Type": "application/json",
