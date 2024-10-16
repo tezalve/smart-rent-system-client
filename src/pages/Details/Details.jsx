@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../providers/AuthProviders';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../providers/AuthProviders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
-import './PropertyCard.css'
-import useIndividual from '../../../hooks/useIndividual';
-import useApprovedProperties from '../../../hooks/useApprovedProperties';
-import { Spinner } from 'react-bootstrap';
-import useBookedProperties from '../../../hooks/useBookedProperties';
-import { NavLink, useNavigate } from 'react-router-dom';
 
-const PropertyCard = ({ property }) => {
+const Details = () => {
+    const property = useLoaderData();
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -85,41 +81,27 @@ const PropertyCard = ({ property }) => {
     }
 
     return (
-        <div className='col-md-12 p-5'>
-            <div className={ full || alreadybooked ? "card flex-row align-items-center bg-warning" : "card flex-row align-items-center"}>
-                <img src={property.image} height={"100px"} className="" alt="..." />
-                <div className="card-body text-center">
-                    <h6 className="card-title">Building: {property.building_name}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Flat: {property.flat_name}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Size: {property.size}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Location: {property.location}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Availability: {property.availability}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Rent: ${property.rent}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
-                </div>
-                <div className="vr"></div>
-                <NavLink className="m-3 btn text-white" to={`/details/${property._id}`} style={{backgroundColor: 'FireBrick'}}>Details</NavLink>
+        <div className='py-5 d-flex justify-content-center'>
+            <img src={property.image} width={"100%"} height={"auto"} style={{maxWidth: "500px"}} alt="" />
+            <div className= {full || alreadybooked ? "card bg-warning" : "card"} style={{width: '18rem'}}>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Building: {property.building_name}</li>
+                    <li className="list-group-item">Flat: {property.flat_name}</li>
+                    <li className="list-group-item">Size: {property.size} sqft</li>
+                    <li className="list-group-item">Location: {property.location}</li>
+                    <li className="list-group-item">Availability: {property.availability}</li>
+                    <li className="list-group-item">Rent: {property.rent} BDT</li>
+                    <li className="list-group-item">Size: {property.size}</li>
+                    <li className="list-group-item text-center">
+                        <a className={ property.availability <= 0 ? "btn text-white disabled" : " text-white btn"} onClick={handleSelect} style={{backgroundColor: "FireBrick"}}>
+                                Book now!
+                                <FontAwesomeIcon className='plus px-1' icon={faCirclePlus} />
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     );
 };
 
-export default PropertyCard;
+export default Details;
