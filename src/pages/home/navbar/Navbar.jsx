@@ -60,7 +60,7 @@ const Navbar = () => {
                                 </>
                                 :
                                 <>
-                                    <NavLink id='login' className='text-decoration-none' to={"/login"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'black' })}>
+                                    <NavLink id='login' className='text-decoration-none' to={"/login"} style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'firebrick' } : { color: 'black' })}>
                                         Login
                                     </NavLink>
                                 </>
