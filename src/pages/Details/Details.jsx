@@ -82,7 +82,7 @@ const Details = () => {
 
     return (
         <div className='py-5 d-flex justify-content-center'>
-            <img src={property.image} width={"100%"} height={"auto"} style={{maxWidth: "500px"}} alt="" />
+            <img src={property.image} width={"auto"} height={"100%"} style={{maxHeight: "300px"}} alt="" />
             <div className= {full || alreadybooked ? "card bg-warning" : "card"} style={{width: '18rem'}}>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Building: {property.building_name}</li>
@@ -91,7 +91,6 @@ const Details = () => {
                     <li className="list-group-item">Location: {property.location}</li>
                     <li className="list-group-item">Availability: {property.availability}</li>
                     <li className="list-group-item">Rent: {property.rent} BDT</li>
-                    <li className="list-group-item">Size: {property.size}</li>
                     <li className="list-group-item text-center">
                         <a className={ property.availability <= 0 ? "btn text-white disabled" : " text-white btn"} onClick={handleSelect} style={{backgroundColor: "FireBrick"}}>
                                 Book now!
