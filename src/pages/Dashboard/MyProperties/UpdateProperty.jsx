@@ -23,6 +23,8 @@ const UpdateProperty = () => {
             const _id = prprty._id;
             const form = event.target;
             const image = form.image.value;
+            const image2 = form.image2.value;
+            const image3 = form.image3.value;
             const building_name = form.building_name.value;
             const flat_name = form.flat_name.value;
             const location = form.location.value;
@@ -31,7 +33,7 @@ const UpdateProperty = () => {
             const availability = 1;
             const email = user.email;
             const status = "pending";
-            const updateProperty = { _id, image, building_name, flat_name, location, rent, size, availability, email, status }
+            const updateProperty = { _id, image, image2, image3, building_name, flat_name, location, rent, size, availability, email, status }
             fetch("http://localhost:5000/updateproperty", {
                 method: "PUT",
                 headers: {
@@ -54,6 +56,14 @@ const UpdateProperty = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Picture URL</Form.Label>
                     <Form.Control name='image' type="text" defaultValue={prprty?.image} placeholder="Enter Picture URL" required/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Picture URL 2</Form.Label>
+                    <Form.Control name='image2' type="text" defaultValue={prprty?.image2} placeholder="Enter Picture URL" required/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Picture URL 3</Form.Label>
+                    <Form.Control name='image3' type="text" defaultValue={prprty?.image3} placeholder="Enter Picture URL" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Building Name</Form.Label>

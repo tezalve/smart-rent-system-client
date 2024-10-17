@@ -85,39 +85,46 @@ const PropertyCard = ({ property }) => {
     }
 
     return (
-        <div className='col-md-12 p-5'>
-            <div className={ full || alreadybooked ? "card flex-row align-items-center bg-warning" : "card flex-row align-items-center"}>
-                <img src={property.image} height={"100px"} className="" alt="..." />
-                <div className="card-body text-center">
-                    <h6 className="card-title">Building: {property.building_name}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Flat: {property.flat_name}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Size: {property.size}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Location: {property.location}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Availability: {property.availability}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <h6 className="card-title">Rent: ${property.rent}</h6>
-                </div>
-                <div className="vr"></div>
-                <div className="card-body text-center">
-                    <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
-                </div>
-                <div className="vr"></div>
-                <NavLink className="m-3 btn text-white" to={`/details/${property._id}`} style={{backgroundColor: 'FireBrick'}}>Details</NavLink>
+        <div className={ full || alreadybooked ? "card bg-warning m-3" : "card m-3"}>
+            <img className='card-img-top p-2' src={property.image} height={'250px'} style={{objectFit: 'cover'}} alt="..." />
+            {/* <div className="card-body text-center">
+                <h6 className="card-text">Building: {property.building_name}</h6>
             </div>
+            <div className="vr"></div>
+            <div className="card-body text-center">
+                <h6 className="card-text">Flat: {property.flat_name}</h6>
+            </div>
+            <div className="vr"></div>
+            <div className="card-body text-center">
+                <h6 className="card-text">Size: {property.size}</h6>
+            </div>
+            <div className="vr"></div>
+            <div className="card-body text-center">
+                <h6 className="card-text">Location: {property.location}</h6>
+            </div>
+            <div className="vr"></div>
+            <div className="card-body text-center">
+                <h6 className="card-text">Availability: {property.availability}</h6>
+            </div>
+            <div className="vr"></div>
+            <div className="card-body text-center">
+                <h6 className="card-text">Rent: ${property.rent}</h6>
+            </div>
+            <div className="vr"></div> */}
+            <ul className="list-group list-group-flush text-center">
+                <li className="list-group-item">Building: {property.building_name}</li>
+                <li className="list-group-item">Flat: {property.flat_name}</li>
+                <li className="list-group-item">Size: {property.size} sqft</li>
+                <li className="list-group-item">Location: {property.location}</li>
+                <li className="list-group-item">Availability: {property.availability}</li>
+                <li className="list-group-item">Rent: ${property.rent}</li>
+                <li className="list-group-item">
+                    <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
+                </li>
+                <li className="list-group-item">
+                    <NavLink className="m-3 btn text-white" to={`/details/${property._id}`} style={{backgroundColor: 'FireBrick'}}>Details</NavLink>
+                </li>
+            </ul>
         </div>
     );
 };

@@ -4,9 +4,20 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../providers/AuthProviders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import Carousel from './Carousel';
 
 const Details = () => {
     const property = useLoaderData();
+
+    const images = [property.image];
+    images.pop();
+    if (property.image2){
+        images.push(property.image2)
+    }
+    if (property.image3){
+        images.push(property.image3)
+    }
+    console.log(images);
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -82,7 +93,28 @@ const Details = () => {
 
     return (
         <div className='py-5 d-flex justify-content-center'>
-            <img src={property.image} width={"auto"} height={"100%"} style={{maxHeight: "300px"}} alt="" />
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img width={"auto"} height={"100%"} style={{maxHeight: "30vw"}} src={property.image} alt="slides"></img>
+                    </div>
+                        {
+                            images?.map(image => <Carousel
+                                key={images.indexOf(image)}
+                                image={image}
+                            ></Carousel>)
+                        }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {/* <img src={property.image} width={"auto"} height={"100%"} style={{maxHeight: "30vw"}} alt="" /> */}
             <div className= {full || alreadybooked ? "card bg-warning" : "card"} style={{width: '18rem'}}>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Building: {property.building_name}</li>
