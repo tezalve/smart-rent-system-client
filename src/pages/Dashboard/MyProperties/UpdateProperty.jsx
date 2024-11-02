@@ -83,7 +83,7 @@ const UpdateProperty = () => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Availability</Form.Label>
-                    <Form.Control name='availability' type="number" defaultValue={prprty?.availability} placeholder="Availability" required />
+                    <Form.Control name='availability' type="number" defaultValue={prprty?.availability} placeholder="Availability" readOnly/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Size</Form.Label>

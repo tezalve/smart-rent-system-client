@@ -43,50 +43,50 @@ const PropertyCard = ({ property }) => {
             full = true;
         }
     })
-    const handleSelect = () => {
-        if (individual?.role === 'tenant') {
-            if (!alreadybooked && !full){
-                const user_email = user.email;
-                const property_id = property._id;
-                const image = property.image;
-                const prprty = property.building_name + " " + property.flat_name;
-                const landlord_email = property.email;
-                const rent = property.rent;
-                const payment_done = false;
-                const deleted = false;
-                const bookedproperty = { user_email, property_id, image, prprty, landlord_email, rent, payment_done, deleted};
-                fetch("http://localhost:5000/bookproperty", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(bookedproperty),
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                    })
-                toast.success(`Successfully booked ${property.size + " " + property.building_name + " " + property.flat_name}`)
-                navigate('/dashboard/bookedproperties');
-            } else {
-                if(alreadybooked){
-                    toast.warn("Already booked");
-                } else if (full){
-                    toast.warn("Full");
-                } else {
-                    toast.warn("Booking Failed Miserably");
-                }
-            }
-        }else if (!user) {
-            toast.warn("Please Log in");
-        } else {
-            toast.warn("Only tenants can book");
-        }
-    }
+    // const handleSelect = () => {
+    //     if (individual?.role === 'tenant') {
+    //         if (!alreadybooked && !full){
+    //             const user_email = user.email;
+    //             const property_id = property._id;
+    //             const image = property.image;
+    //             const prprty = property.building_name + " " + property.flat_name;
+    //             const landlord_email = property.email;
+    //             const rent = property.rent;
+    //             const payment_done = false;
+    //             const deleted = false;
+    //             const bookedproperty = { user_email, property_id, image, prprty, landlord_email, rent, payment_done, deleted};
+    //             fetch("http://localhost:5000/bookproperty", {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //                 body: JSON.stringify(bookedproperty),
+    //             })
+    //                 .then(res => res.json())
+    //                 .then(data => {
+    //                     console.log(data);
+    //                 })
+    //             toast.success(`Successfully booked ${property.size + " " + property.building_name + " " + property.flat_name}`)
+    //             navigate('/dashboard/bookedproperties');
+    //         } else {
+    //             if(alreadybooked){
+    //                 toast.warn("Already booked");
+    //             } else if (full){
+    //                 toast.warn("Full");
+    //             } else {
+    //                 toast.warn("Booking Failed Miserably");
+    //             }
+    //         }
+    //     }else if (!user) {
+    //         toast.warn("Please Log in");
+    //     } else {
+    //         toast.warn("Only tenants can book");
+    //     }
+    // }
 
     return (
-        <div className={ full || alreadybooked ? "card bg-warning m-3" : "card m-3"}>
-            <img className='card-img-top p-2' src={property.image} height={'250px'} style={{objectFit: 'cover'}} alt="..." />
+        <div className={ full || alreadybooked ? "col-3 bg-warning" : "col-3"}>
+            <img className='card-img-top p-2' src={property.image} height={'250px'} width={'250px'} style={{objectFit: 'cover'}} alt="..." />
             {/* <div className="card-body text-center">
                 <h6 className="card-text">Building: {property.building_name}</h6>
             </div>
@@ -111,16 +111,16 @@ const PropertyCard = ({ property }) => {
                 <h6 className="card-text">Rent: ${property.rent}</h6>
             </div>
             <div className="vr"></div> */}
-            <ul className="list-group list-group-flush text-center">
+            <ul className="list-group list-group-flush">
                 <li className="list-group-item">Building: {property.building_name}</li>
                 <li className="list-group-item">Flat: {property.flat_name}</li>
                 <li className="list-group-item">Size: {property.size} sqft</li>
                 <li className="list-group-item">Location: {property.location}</li>
                 <li className="list-group-item">Availability: {property.availability}</li>
                 <li className="list-group-item">Rent: ${property.rent}</li>
-                <li className="list-group-item">
+                {/* <li className="list-group-item">
                     <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
-                </li>
+                </li> */}
                 <li className="list-group-item">
                     <NavLink className="m-3 btn text-white" to={`/details/${property._id}`} style={{backgroundColor: 'FireBrick'}}>Details</NavLink>
                 </li>

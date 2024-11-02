@@ -1,12 +1,14 @@
 import { faMoneyBill, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../../providers/AuthProviders';
 
 const BookedProperty = ({ property }) => {
-    
+    const { user } = useContext(AuthContext);
+    console.log(property);
     const handleDelete = (property) => {
         var result = confirm("Are you sure you want to delete?");
         if(result && property){
@@ -32,7 +34,7 @@ const BookedProperty = ({ property }) => {
 
     const pay = async () => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/bkash/payment/create', { amount: property.rent*2, orderId: 1 }, { withCredentials: true })
+            const { data } = await axios.post('http://localhost:5000/api/bkash/payment/create', { amount: property.rent*2, userId: user.email, bookingId: property._id }, { withCredentials: true })
             window.location.href = data.bkashURL
         } catch (error) {
             console.log(error.response.data)
@@ -49,6 +51,15 @@ const BookedProperty = ({ property }) => {
                 <div className="card-body text-center">
                     <p className="card-title">Booking Money /Two Month of Rent/: {property.rent*2}</p>
                 </div>
+                <div className="card-body text-center">
+                    {
+                        property.payment_done == true ?
+                            <p className="card-title">Payment Done: Yes </p>
+                        :
+                            <p className="card-title">Payment Done: No </p>
+
+                    }
+                </div>
 
                 <div className="card-body text-center border-right border-dark">
                     <Link className={property.payment_done == false ? "btn" : "btn disabled"} onClick={() => handleDelete(property)} ><FontAwesomeIcon className='fs-2 text-danger' icon={faTrash} /></Link>
@@ -57,7 +68,7 @@ const BookedProperty = ({ property }) => {
                 <div className="card-body text-center border-right border-dark">
                     <Link to={`/dashboard/payment/${property._id}`} className={property.payment_done == false ? "btn" : "btn disabled"} ><FontAwesomeIcon className='fs-2 text-success' icon={faMoneyBill} /></Link>
                 </div>
-                <button onClick={pay}>Pay With bKash</button>
+                <button style={{backgroundColor: '#cfcfcf', color:'#af1157'}} className={property.payment_done == true ? "btn disabled" : "btn"} onClick={pay}>Pay With bKash</button>
             </div>
         </div>
     );
