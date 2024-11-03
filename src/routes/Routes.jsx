@@ -19,6 +19,9 @@ import Registration from "../pages/Registration/Registration";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Details from "../pages/Details/Details";
+import RentedProperties from "../pages/Dashboard/RentedProperties/RentedProperties";
+import AddMaintenance from "../pages/Dashboard/RentedProperties/AddMaintenance";
+import MaintenanceRequests from "../pages/Dashboard/MaintenanceRequests/MaintenanceRequests";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +83,19 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/bookedproperties",
                 element: <TenantRoutes><BookedProperties></BookedProperties></TenantRoutes>
+            },
+            {
+                path: "/dashboard/rentedproperties",
+                element: <TenantRoutes><RentedProperties></RentedProperties></TenantRoutes>
+            },
+            {
+                path: "/dashboard/maintenancerequests",
+                element: <TenantRoutes><MaintenanceRequests></MaintenanceRequests></TenantRoutes>
+            },
+            {
+                path: "/dashboard/addmaintenance/:id",
+                element: <TenantRoutes><AddMaintenance></AddMaintenance></TenantRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:5000/rentedproperty/${params.id}`)
             }
         ]
     }

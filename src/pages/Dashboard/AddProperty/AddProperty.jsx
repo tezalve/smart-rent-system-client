@@ -17,10 +17,11 @@ const AddProperty = () => {
         const location = form.location.value;
         const rent = form.rent.value;
         const size = form.size.value;
+        const available_from = form.available_from;
         const availability = 1;
         const email = user.email;
         const status = "pending";
-        const newProperty = { image, image2, image3, building_name, flat_name, location, rent, size, availability, email, status }
+        const newProperty = { image, image2, image3, building_name, flat_name, location, rent, size, availability, available_from, email, status }
         fetch("http://localhost:5000/addproperty", {
             method: "POST",
             headers: {
@@ -62,6 +63,10 @@ const AddProperty = () => {
                 <Form.Group className="mb-3">
                     <Form.Label>Location</Form.Label>
                     <Form.Control name='location' type="text" placeholder="Enter Location" required/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Available From: </Form.Label>
+                    <Form.Control name='available_from' type="date" placeholder="Enter Location" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Rent in BDT</Form.Label>

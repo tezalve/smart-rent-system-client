@@ -27,7 +27,7 @@ const Dashboard = () => {
                     <ToastContainer></ToastContainer>
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-2 bg-dark">
+                            <div className="col-2" style={{backgroundColor: "gray"}}>
                                 <div className="min-vh-100">
                                     <div className='text-center p-2'>
                                         <span className='p-1'>
@@ -80,6 +80,16 @@ const Dashboard = () => {
                                             <li className="nav-item py-4">
                                                 <NavLink to={'/dashboard/bookedproperties'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
                                                     Booked Properties
+                                                </NavLink>
+                                            </li>
+                                            <li className="nav-item py-4">
+                                                <NavLink to={'/dashboard/rentedproperties'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
+                                                    Rented Properties
+                                                </NavLink>
+                                            </li>
+                                            <li className="nav-item py-4">
+                                                <NavLink to={'/dashboard/maintenancerequests'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
+                                                    My Maintenance Requests
                                                 </NavLink>
                                             </li>
                                         </ul>

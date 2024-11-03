@@ -1,29 +1,29 @@
 import React, { useContext } from 'react';
-import BookedProperty from './BookedProperty';
-import useBookedProperties from '../../../hooks/useBookedProperties';
 import { AuthContext } from '../../../providers/AuthProviders';
+import useRentedProperties from '../../../hooks/useRentedProperties';
+import RentedProperty from './RentedProperty';
 import { Slide } from 'react-awesome-reveal';
 import { CardGroup, Spinner } from 'react-bootstrap';
 
-const BookedProperties = () => {
+const RentedProperties = () => {
     const { user } = useContext(AuthContext);
-    const [data] = useBookedProperties(user.email);
-    if(data && user){
-        return(
+    const [data] = useRentedProperties(user.email);
+    if (user && data){
+        return (
             <div>
-                <h1 className='text-center'>Booked Properties</h1>
+                <h1 className='text-center'>Rented Properties</h1>
                 <Slide>
                     <CardGroup>
                         {
-                            data?.map(property => <BookedProperty
+                            data?.map(property => <RentedProperty
                                 key={property._id}
                                 property={property}
-                            ></BookedProperty>)
+                            ></RentedProperty>)
                         }
                     </CardGroup>
                 </Slide>
             </div>
-        )
+        );
     } else {
         return (
             <div>
@@ -33,4 +33,4 @@ const BookedProperties = () => {
     }
 };
 
-export default BookedProperties;
+export default RentedProperties;

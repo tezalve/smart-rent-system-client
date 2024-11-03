@@ -59,11 +59,11 @@ const UpdateProperty = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Picture URL 2</Form.Label>
-                    <Form.Control name='image2' type="text" defaultValue={prprty?.image2} placeholder="Enter Picture URL" required/>
+                    <Form.Control name='image2' type="text" defaultValue={prprty?.image2} placeholder="Enter Picture URL"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Picture URL 3</Form.Label>
-                    <Form.Control name='image3' type="text" defaultValue={prprty?.image3} placeholder="Enter Picture URL" required/>
+                    <Form.Control name='image3' type="text" defaultValue={prprty?.image3} placeholder="Enter Picture URL"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Building Name</Form.Label>

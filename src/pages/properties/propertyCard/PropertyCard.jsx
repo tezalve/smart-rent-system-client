@@ -85,7 +85,7 @@ const PropertyCard = ({ property }) => {
     // }
 
     return (
-        <div className={ full || alreadybooked ? "col-3 bg-warning" : "col-3"}>
+        <div className={ full || alreadybooked ? "col-3 bg-warning shadow p-1" : "col-3 shadow p-1"}>
             <img className='card-img-top p-2' src={property.image} height={'250px'} width={'250px'} style={{objectFit: 'cover'}} alt="..." />
             {/* <div className="card-body text-center">
                 <h6 className="card-text">Building: {property.building_name}</h6>
@@ -117,7 +117,8 @@ const PropertyCard = ({ property }) => {
                 <li className="list-group-item">Size: {property.size} sqft</li>
                 <li className="list-group-item">Location: {property.location}</li>
                 <li className="list-group-item">Availability: {property.availability}</li>
-                <li className="list-group-item">Rent: ${property.rent}</li>
+                <li className="list-group-item">Rent: ৳{property.rent}</li>
+                <li className="list-group-item">Available From: {property.available_from}</li>
                 {/* <li className="list-group-item">
                     <a className={ property.availability <= 0 ? "btn disabled" : "btn"} onClick={handleSelect}><FontAwesomeIcon className='plus' icon={faCirclePlus} /></a>
                 </li> */}

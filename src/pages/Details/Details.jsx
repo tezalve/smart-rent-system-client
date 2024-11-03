@@ -93,7 +93,7 @@ const Details = () => {
 
     return (
         <div className='py-5 d-flex justify-content-center'>
-            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" className="carousel" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img width={"auto"} height={"100%"} style={{maxHeight: "30vw"}} src={property.image} alt="slides"></img>
@@ -115,14 +115,15 @@ const Details = () => {
                 </a>
             </div>
             {/* <img src={property.image} width={"auto"} height={"100%"} style={{maxHeight: "30vw"}} alt="" /> */}
-            <div className= {full || alreadybooked ? "card bg-warning" : "card"} style={{width: '18rem'}}>
+            <div className= {full || alreadybooked ? "card bg-warning shadow" : "card shadow"} style={{width: '18rem'}}>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Building: {property.building_name}</li>
                     <li className="list-group-item">Flat: {property.flat_name}</li>
                     <li className="list-group-item">Size: {property.size} sqft</li>
                     <li className="list-group-item">Location: {property.location}</li>
                     <li className="list-group-item">Availability: {property.availability}</li>
-                    <li className="list-group-item">Rent: {property.rent} BDT</li>
+                    <li className="list-group-item">Rent: ৳{property.rent}</li>
+                    <li className="list-group-item">Available From: {property.available_from}</li>
                     <li className="list-group-item text-center">
                         <a className={ property.availability <= 0 ? "btn text-white disabled" : " text-white btn"} onClick={handleSelect} style={{backgroundColor: "FireBrick"}}>
                                 Book now!
