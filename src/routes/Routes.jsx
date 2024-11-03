@@ -22,6 +22,7 @@ import Details from "../pages/Details/Details";
 import RentedProperties from "../pages/Dashboard/RentedProperties/RentedProperties";
 import AddMaintenance from "../pages/Dashboard/RentedProperties/AddMaintenance";
 import MaintenanceRequests from "../pages/Dashboard/MaintenanceRequests/MaintenanceRequests";
+import LandlordMaintenanceRequests from "../pages/Dashboard/LandlorMaintenanceRequests/LandlordMaintenanceRequests";
 
 const router = createBrowserRouter([
     {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/maintenancerequests",
                 element: <TenantRoutes><MaintenanceRequests></MaintenanceRequests></TenantRoutes>
+            },
+            {
+                path: "/dashboard/landlordmaintenancerequests",
+                element: <LandlordRoutes><LandlordMaintenanceRequests></LandlordMaintenanceRequests></LandlordRoutes>
             },
             {
                 path: "/dashboard/addmaintenance/:id",

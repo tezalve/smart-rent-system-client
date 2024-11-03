@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import useMaintenanceRequests from '../../../hooks/useMaintenanceRequests';
-import MaintenanceRequest from './MaintenanceRequest';
 import { Slide } from 'react-awesome-reveal';
 import { CardGroup, Spinner } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProviders';
+import LandlordMaintenanceRequest from './LandlordMaintenanceRequest';
 
-const MaintenanceRequests = () => {
+const LandlordMaintenanceRequests = () => {
     const { user } = useContext(AuthContext);
-    const [data] = useMaintenanceRequests(user.email, 'tenant');
+    const [data] = useMaintenanceRequests(user.email, 'landlord');
     console.log(data);
     if(data && user){
         return(
@@ -16,10 +16,10 @@ const MaintenanceRequests = () => {
                 <Slide>
                     <CardGroup>
                         {
-                            data?.map(maintenancerequest => <MaintenanceRequest
+                            data?.map(maintenancerequest => <LandlordMaintenanceRequest
                                 key={maintenancerequest._id}
                                 maintenancerequest={maintenancerequest}
-                            ></MaintenanceRequest>)
+                            ></LandlordMaintenanceRequest>)
                         }
                     </CardGroup>
                 </Slide>
@@ -34,4 +34,4 @@ const MaintenanceRequests = () => {
     }
 };
 
-export default MaintenanceRequests;
+export default LandlordMaintenanceRequests;

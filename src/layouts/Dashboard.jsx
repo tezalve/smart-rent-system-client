@@ -70,6 +70,11 @@ const Dashboard = () => {
                                                     Add Property
                                                 </NavLink>
                                             </li>
+                                            <li className="nav-item py-4">
+                                                <NavLink to={'/dashboard/landlordmaintenancerequests'} className="text-decoration-none" style={({ isActive }) => (isActive ? { borderBottom: "2px solid black", color: 'red' } : { color: 'white' })}>
+                                                    Maintenance Requests
+                                                </NavLink>
+                                            </li>
                                         </ul>
                                         :
                                         ""

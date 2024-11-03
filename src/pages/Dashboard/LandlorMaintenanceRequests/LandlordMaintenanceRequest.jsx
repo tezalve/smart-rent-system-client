@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
 import { toast } from 'react-toastify';
 
-const MaintenanceRequest = ({maintenancerequest}) => {
+const LandlordMaintenanceRequest = ({maintenancerequest}) => {
     const { user } = useContext(AuthContext);
 
     const handleAffirm = () => {
-        fetch(`http://localhost:5000/updateconfirmation/${'tenant'}/${maintenancerequest._id}/${maintenancerequest.tenant_confirmation}/${maintenancerequest.landlord_confirmation}`, {
+        fetch(`http://localhost:5000/updateconfirmation/${'landlord'}/${maintenancerequest._id}/${maintenancerequest.tenant_confirmation}/${maintenancerequest.landlord_confirmation}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -48,11 +48,11 @@ const MaintenanceRequest = ({maintenancerequest}) => {
                     <Link className={maintenancerequest.resolved == false ? "btn disabled" : "btn disabled"} onClick={() => handleDelete(maintenancerequest)} ><FontAwesomeIcon className='fs-2 text-danger' icon={faTrash} /></Link>
                 </div>
                 <div className="card-body text-center border-right border-dark">
-                    <Link className={!maintenancerequest.resolved && maintenancerequest.tenant_confirmation == 'pending' ? "btn" : "btn disabled"} onClick={() => handleAffirm(maintenancerequest)} ><FontAwesomeIcon className='fs-2 text-success' icon={faSquareCheck} /></Link>
+                    <Link className={!maintenancerequest.resolved && maintenancerequest.landlord_confirmation == 'pending' ? "btn" : "btn disabled"} onClick={() => handleAffirm(maintenancerequest)} ><FontAwesomeIcon className='fs-2 text-success' icon={faSquareCheck} /></Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default MaintenanceRequest;
+export default LandlordMaintenanceRequest;

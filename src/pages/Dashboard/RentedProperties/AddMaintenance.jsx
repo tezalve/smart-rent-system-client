@@ -20,7 +20,7 @@ const AddMaintenance = () => {
         const property = form.prprty.value;
         const tenant_email = user.email;
         const landlord_email = prprty.landlord_email;
-        const problem_in_detail = prprty.problem_in_detail;
+        const problem_in_detail = form.problem_in_detail.value;
         const landlord_confirmation = "pending";
         const tenant_confirmation = "pending";
         const resolved = false;
